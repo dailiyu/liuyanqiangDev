@@ -1,0 +1,82 @@
+//-----colors------
+@primary-color: #3b73f0;//全局主色
+@link-color:#1890ff;//链接颜色
+@success-color: #22bf87;//成功色
+@warning: #f67770;//警告色
+@error-color:#F55151;//错误色
+@like-color:#F67770;
+//-----中性色---------------
+@gray-1:#202020;
+@gray-2:#5B5B5B;
+@gray-3:#949494;
+@gray-9:#F6F6F8;
+@gray-10:#ffffff;
+
+//------FONTS-----
+@font-size-12:12px;
+@font-size-14:14px;
+@font-size-16:16px;
+
+//-------- 间距 ------
+@padding-4:4px;
+@padding-8:8px;
+@padding-12:12px;
+@padding-20:20px;
+
+//引入字体图标库
+@import '../assets/fonts/icon/iconfont.css';
+
+
+//引入字体
+@font-face {
+    font-family: "HanziPenSC-W3";
+    src: url('@/assets/fonts/fonts/hk.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+//-------动画-------
+@tr:all,0.3s;
+
+
+//全局控制
+body{
+    padding: 0px;
+    margin: 0px;
+    line-height: 1.5;
+    color:@gray-1;
+    font-size: @font-size-14;
+    background-color: @gray-10;
+    transition: all,0.3s;
+    font-family: Avenir, Helvetica, Arial,sans-serif;
+    // -webkit-font-smoothing:antialiased;
+    // -moz-osx-font-smoothing:grayscale;
+}
+
+p{
+    padding: 0;
+    margin: 0;
+}
+
+li{
+    list-style: none;
+}
+
+img{
+    padding: 0;
+    margin: 0;
+    display: block;
+}
+
+a{
+    text-decoration: none;
+    &:hover{
+        text-decoration: underline;
+    }
+}
+
+input,textarea{
+    outline: none;
+}
+

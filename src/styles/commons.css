@@ -1,0 +1,39 @@
+@import '../assets/fonts/icon/iconfont.css';
+@font-face {
+  font-family: "HanziPenSC-W3";
+  src: url('@/assets/fonts/fonts/hk.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+body {
+  padding: 0px;
+  margin: 0px;
+  line-height: 1.5;
+  color: #202020;
+  font-size: 14px;
+  background-color: #ffffff;
+  transition: all, 0.3s;
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+}
+p {
+  padding: 0;
+  margin: 0;
+}
+li {
+  list-style: none;
+}
+img {
+  padding: 0;
+  margin: 0;
+  display: block;
+}
+a {
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+input,
+textarea {
+  outline: none;
+}
