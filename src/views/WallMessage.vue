@@ -5,54 +5,31 @@
     </p>
     <p class="slogan">{{ wallType[id].slogan }}</p>
     <div class="label">
-      <p
-        class="babel-list"
-        :class="{
-          babelListNight: model == 1,
-          labelselect: curlabel == -1,
-          labelSelectNight: model == 1 && curlabel == -1,
-        }"
-        @click="changeLabel(-1)"
-      >
+      <p class="babel-list" :class="{
+        babelListNight: model == 1,
+        labelselect: curlabel == -1,
+        labelSelectNight: model == 1 && curlabel == -1,
+      }" @click="changeLabel(-1)">
         全部
       </p>
-      <p
-        :class="{
-          babelListNight: model == 1,
-          labelselect: curlabel == index,
-          labelSelectNight: model == 1 && curlabel == index,
-        }"
-        class="babel-list"
-        v-for="(item, index) in label[id]"
-        :key="index"
-        @click="changeLabel(index)"
-      >
+      <p :class="{
+        babelListNight: model == 1,
+        labelselect: curlabel == index,
+        labelSelectNight: model == 1 && curlabel == index,
+      }" class="babel-list" v-for="(item, index) in label[id]" :key="index" @click="changeLabel(index)">
         {{ item }}
       </p>
     </div>
     <!-- 留言墙主页卡片列表 -->
     <div class="card-list" v-show="id == 0">
-      <NodeCard
-        class="card-item"
-        v-for="(item, index) in cards"
-        :key="index"
-        :cardData="item"
-        :index="index"
-        :model="model"
-        :class="{ selectCard: index == selectCardIndex }"
-        @toDetail="changeCardIndex(index)"
-        @dealClickLike="dealClickLike"
-      ></NodeCard>
+      <NodeCard class="card-item" v-for="(item, index) in cards" :key="index" :cardData="item" :index="index"
+        :model="model" :class="{ selectCard: index == selectCardIndex }" @toDetail="changeCardIndex(index)"
+        @dealClickLike="dealClickLike"></NodeCard>
     </div>
     <!-- 照片墙卡片 -->
     <div class="photo" v-show="id == 1">
-      <PhotoCard
-        v-for="(item, index) in cards"
-        :key="index"
-        :photoData="item"
-        class="photo-item"
-        @toDetail="changeCardIndex(index)"
-      ></PhotoCard>
+      <PhotoCard v-for="(item, index) in cards" :key="index" :photoData="item" class="photo-item"
+        @toDetail="changeCardIndex(index)"></PhotoCard>
     </div>
     <!-- 卡片状态显示 -->
     <div class="none-msg" v-show="isOk == 0">
@@ -72,45 +49,20 @@
       <span class="iconfont icon-tianjia" @click="changeOpen(true)"></span>
     </div>
     <transition name="modal">
-      <Lymodal
-        v-show="isOpen"
-        class="modal"
-        :title="title"
-        @closeModal="changeOpen(false)"
-      >
-        <NewCard
-          :id="id"
-          v-show="selectCardIndex == -1"
-          @closeModal="changeOpen(false)"
-          @updateCardList="updateCardList"
-        ></NewCard>
-        <CardDetail
-          v-if="selectCardIndex != -1"
-          :cardData="cards[selectCardIndex]"
-          :index="selectCardIndex"
-          @closeModel="changeOpen(false)"
-          @dealDeleteWall="dealDeleteWall()"
-          @dealAddOrDeleteComment="dealAddOrDeleteComment"
-        >
-          <NodeCard
-            v-if="cards[selectCardIndex]"
-            :cardData="cards[selectCardIndex]"
-            :index="selectCardIndex"
-            @dealClickLike="dealClickLike"
-          ></NodeCard>
+      <Lymodal v-show="isOpen" class="modal" :title="title" @closeModal="changeOpen(false)">
+        <NewCard :id="id" v-show="selectCardIndex == -1" @closeModal="changeOpen(false)" @updateCardList="updateCardList">
+        </NewCard>
+        <CardDetail v-if="selectCardIndex != -1" :cardData="cards[selectCardIndex]" :index="selectCardIndex"
+          @closeModel="changeOpen(false)" @dealDeleteWall="dealDeleteWall()"
+          @dealAddOrDeleteComment="dealAddOrDeleteComment">
+          <NodeCard v-if="cards[selectCardIndex]" :cardData="cards[selectCardIndex]" :index="selectCardIndex" :model=0
+            @dealClickLike="dealClickLike"></NodeCard>
         </CardDetail>
       </Lymodal>
     </transition>
     <transition name="modal2">
-      <LyView
-        class="ly-view"
-        v-if="selectCardIndex != -1 && id == 1"
-        :photoArr="photoArr"
-        :cards="cards"
-        :nowNumber="selectCardIndex"
-        @changeCardIndex="changeCardIndex"
-        :model="model"
-      ></LyView>
+      <LyView class="ly-view" v-if="selectCardIndex != -1 && id == 1" :photoArr="photoArr" :cards="cards"
+        :nowNumber="selectCardIndex" @changeCardIndex="changeCardIndex" :model="model"></LyView>
     </transition>
   </div>
 </template>
@@ -157,7 +109,7 @@ export default {
       pagesize: 10, //每次加载的图片数
       photoArr: [], //照片数组
       userId: this.$store.state.user.id, //用户id
-      model: 0, //白天或夜间模式
+      model: 1, //白天或夜间模式
       isEnd: true, //一次获取卡片数据的逻辑是否结束
       // cardsCopy: [],
     };
@@ -347,20 +299,25 @@ export default {
     &-from {
       transform: translateX(100%);
     }
+
     &-active {
       transition: all 0.2s ease-out;
     }
+
     &-to {
       transform: translateX(0px);
     }
   }
+
   &-leave {
     &-from {
       transform: translateX(0px);
     }
+
     &-active {
       transition: all 0.2s ease-in;
     }
+
     &-to {
       transform: translateX(100%);
     }
@@ -372,20 +329,25 @@ export default {
     &-from {
       opacity: 0;
     }
+
     &-active {
       transition: all 0.2s ease-out;
     }
+
     &-to {
       opacity: 1;
     }
   }
+
   &-leave {
     &-from {
       opacity: 1;
     }
+
     &-active {
       transition: all 0.2s ease-in;
     }
+
     &-to {
       opacity: 0;
     }
@@ -404,14 +366,17 @@ export default {
     font-weight: 600;
     padding-top: 48px;
   }
+
   .titleNight {
     color: rgb(231, 232, 233);
   }
+
   .slogan {
     margin-top: 8px;
     color: @gray-2;
     text-align: center;
   }
+
   .label {
     margin-top: 44px;
     display: flex;
@@ -425,9 +390,11 @@ export default {
       margin: 1 4px;
       padding: 0 15px;
     }
+
     .babelListNight {
       color: rgb(230, 231, 232);
     }
+
     .labelselect {
       font-size: 14px;
       color: @gray-1;
@@ -435,6 +402,7 @@ export default {
       border: 1px solid rgba(32, 32, 32, 1);
       border-radius: 14px;
     }
+
     .labelSelectNight {
       font-size: 14px;
       color: rgb(230, 231, 232);
@@ -443,6 +411,7 @@ export default {
       border-radius: 14px;
     }
   }
+
   .card-list {
     display: flex;
     flex-flow: row wrap;
@@ -455,20 +424,24 @@ export default {
       box-sizing: border-box;
       transition: 0.3s ease;
     }
+
     .card-item:hover {
       transform: translateY(-10px);
     }
+
     .selectCard {
       border: 1px solid rgba(59, 115, 240, 1);
       box-sizing: border-box;
     }
   }
+
   .photo {
     padding-top: 27px;
     width: 88%;
     columns: 6;
     column-gap: 4px;
     margin: 0 auto;
+
     // display: flex;
     // flex-wrap: wrap;
     .photo-item {
@@ -483,10 +456,12 @@ export default {
     padding-top: 80px;
     position: absolute;
     top: 280px;
+
     img {
       width: 25%;
       display: inline;
     }
+
     p {
       font-family: serif;
       font-weight: 700;
@@ -498,23 +473,27 @@ export default {
   .loading {
     text-align: center;
     width: 100%;
+
     p {
       margin-top: -72px;
       font-family: serif;
       font-size: 24px;
       color: @gray-3;
     }
+
     #lottile {
       margin-top: 20px;
       height: 200px;
     }
   }
+
   .no-more {
     text-align: center;
     font-size: 16px;
     color: @gray-3;
     padding: 20px;
   }
+
   .add {
     width: 56px;
     height: 56px;
@@ -535,6 +514,7 @@ export default {
       color: @gray-10;
     }
   }
+
   .ly-view {
     transition: @tr;
   }

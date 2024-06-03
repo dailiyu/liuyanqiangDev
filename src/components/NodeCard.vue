@@ -1,32 +1,18 @@
 <template>
-  <div
-    class="node-card"
-    :style="{ background: cardColor[cardData.color] }"
-    v-if="cardData.type == 0"
-  >
+  <div class="node-card" :style="{ background: cardColor[cardData.color] }" v-if="cardData.type == 0">
     <div class="card-top">
       <p class="time">{{ cardData.moment }}</p>
       <p class="label">{{ label[cardData.type][cardData.label] }}</p>
     </div>
-    <div
-      class="card-middle"
-      :class="{ cardMiddleNight: model == 1 }"
-      @click="this.$emit('toDetail')"
-    >
+    <div class="card-middle" :class="{ cardMiddleNight: model == 1 }" @click="this.$emit('toDetail')">
       {{ cardData.message }}
     </div>
     <div class="card-footer">
       <div class="footer-left">
-        <span
-          class="iconfont icon-custom-tolove"
-          :class="{ islike: LikeCount > 0 || isLike }"
-          @click="toLike"
-        >
-          {{ LikeCount }}</span
-        >
+        <span class="iconfont icon-custom-tolove" :class="{ islike: LikeCount > 0 || isLike }" @click="toLike">
+          {{ LikeCount }}</span>
         <span class="iconfont icon-liuyan">
-          {{ cardData.comcount[0].count }}</span
-        >
+          {{ cardData.comcount[0].count }}</span>
       </div>
       <div class="footer-right" :class="{ footerRightNight: model == 1 }">
         {{ cardData.name }}
@@ -67,7 +53,7 @@ export default {
       default: -1, //当前卡片索引
     },
     model: {
-      default: 0,
+      default: 1,
     },
   },
 
@@ -112,6 +98,7 @@ export default {
   height: 240px;
   background: rgba(252, 175, 162, 0.3);
   position: relative;
+
   // transition: all, 2s;
   // &:hover {
   //   position: relative;
@@ -121,15 +108,18 @@ export default {
     padding: 10px 20px;
     display: flex;
     justify-content: space-between;
+
     .time {
       font-size: 12px;
       color: @gray-3;
     }
+
     .label {
       font-size: 12px;
       color: #7e7e7e;
     }
   }
+
   .card-middle {
     padding: 9px 20px;
     font-family: HanziPenSC-W3;
@@ -141,9 +131,11 @@ export default {
     overflow: hidden;
     font-weight: 400;
   }
+
   .cardMiddleNight {
     color: rgb(217, 215, 220);
   }
+
   .card-footer {
     position: absolute;
     bottom: 10px;
@@ -160,24 +152,29 @@ export default {
         margin-right: 10px;
         cursor: pointer;
         transition: @tr;
+
         &:hover {
           color: @like-color;
         }
       }
+
       .islike {
         color: @like-color;
       }
+
       .icon-liuyan {
         color: #949494;
         font-size: 12px;
       }
     }
+
     .footer-right {
       font-family: HanziPenSC-W3;
       color: @gray-1;
       font-size: 22px;
       font-weight: 600;
     }
+
     .footerRightNight {
       color: rgb(217, 215, 220);
     }

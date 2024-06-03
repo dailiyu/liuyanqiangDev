@@ -3,15 +3,7 @@
     <div :class="model == 0 ? 'bg' : 'bgNight'"></div>
     <div class="viewr-photo">
       <img :src="imgurl" class="photo-img" v-if="sourceType == 1" />
-      <video
-        :src="imgurl"
-        class="photo-img"
-        v-if="sourceType == 2"
-        autoplay
-        loop
-        muted
-        controls
-      ></video>
+      <video :src="imgurl" class="photo-img" v-if="sourceType == 2" autoplay loop muted controls></video>
     </div>
     <div class="switch sw-left" @click="toPre" v-show="nowNumber > 0">
       <span class="iconfont icon-xiangzuo1"></span>
@@ -40,7 +32,7 @@ export default {
       default: false,
     },
     model: {
-      default: 0,
+      default: 1,
     },
   },
   data() {
@@ -87,7 +79,7 @@ export default {
       if (this.nowNumber > 0) {
         // this.curIndex--;
         this.$emit("changeCardIndex", this.nowNumber - 1);
-        setTimeout(() => {}, 100);
+        setTimeout(() => { }, 100);
       }
     },
     //后一张
@@ -99,7 +91,7 @@ export default {
       }
     },
   },
-  mounted() {},
+  mounted() { },
 };
 </script>
 
@@ -125,6 +117,7 @@ export default {
     width: 100%;
     height: 100%;
   }
+
   .bgNight {
     background: rgba(0, 0, 0, 0.15);
     position: absolute;
@@ -136,6 +129,7 @@ export default {
     width: 100%;
     height: 100%;
   }
+
   .viewr-photo {
     position: absolute;
     padding: 82px 454px 0px 96px;
@@ -146,6 +140,7 @@ export default {
     overflow-y: auto;
     display: flex;
     justify-content: center;
+
     img {
       max-width: 100%;
     }
@@ -166,16 +161,20 @@ export default {
     opacity: 0.5;
     transition: @tr;
     cursor: pointer;
+
     .iconfont {
       font-size: 24px;
     }
+
     &:hover {
       opacity: 1;
     }
   }
+
   .sw-left {
     left: 20px;
   }
+
   .sw-right {
     right: 375px;
   }

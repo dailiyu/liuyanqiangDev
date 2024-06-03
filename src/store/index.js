@@ -6,7 +6,7 @@ const store = createStore({
     return {
       count: 0,
       user: {},
-      model: 0,
+      model: 1,
     };
   },
   mutations: {

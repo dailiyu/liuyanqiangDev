@@ -1,6 +1,7 @@
 import { createApp } from "vue";
 import router from "@/router/index";
 import store from "@/store/index";
+import '@/utils/mouse'
 // import LIYU from "@/components/liyu/index";
 import eventBus from "./utils/EventBus";
 

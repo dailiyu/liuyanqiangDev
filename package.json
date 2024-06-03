@@ -13,7 +13,6 @@
     "element-plus": "^2.3.9",
     "lottie-web": "^5.12.2",
     "mitt": "^3.0.1",
-    "vue": "^3.2.13",
     "vue-axios": "^3.5.2",
     "vue-router": "^4.2.4",
     "vuex": "^4.0.2"
@@ -32,6 +31,7 @@
     "style-resources-loader": "^1.5.0",
     "unplugin-auto-import": "^0.16.6",
     "unplugin-vue-components": "^0.25.1",
+    "vue": "^3.2.13",
     "vue-cli-plugin-style-resources-loader": "^0.1.5",
     "webpack-cli": "^5.1.4"
   },
